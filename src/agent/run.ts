@@ -20,6 +20,7 @@ export const runAgent = async (
   conversationHistory: ModelMessage[],
   callbacks: AgentCallbacks
 ) => {
+  // Filter and check if we need to compact the conversation history before starting
   const { text } = await generateText({
     model: openai(MODEL_NAME),
     prompt: userMessage,
@@ -30,6 +31,8 @@ export const runAgent = async (
       tracer: getTracer(),
     },
   });
+
+  await Laminar.flush();
 
   console.log("done");
 };
