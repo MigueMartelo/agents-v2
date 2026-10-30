@@ -18,7 +18,7 @@ export const executeTool = async(
     return "This is not a registered tool";
   }
 
-  const result = await execute(args, {
+  const result = await execute(args as any, {
     toolCallId: '',
     messages: [],
   });
